@@ -44,3 +44,4 @@ public sealed class GetAllEstimatesQueryHandler(IAppDbContext dbContext)
         return Result<List<EstimateDto>>.Success(estimates);
     }
 }
+

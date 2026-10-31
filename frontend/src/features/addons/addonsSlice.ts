@@ -17,6 +17,7 @@ export const initialAddOns: AddOnOption[] = [
     category: 'Audio',
     description: 'Acoustic PA speakers with high clarity and tripods.',
     iconName: 'speakers',
+    imageUrl: '/assets/images/addon-speakers.jpg',
     displayOrder: 1,
   },
   {
@@ -27,6 +28,7 @@ export const initialAddOns: AddOnOption[] = [
     category: 'Audio',
     description: 'Wireless handheld and lapel condenser microphones.',
     iconName: 'microphones',
+    imageUrl: '/assets/images/addon-microphones.jpg',
     displayOrder: 2,
   },
   {
@@ -37,6 +39,7 @@ export const initialAddOns: AddOnOption[] = [
     category: 'Interactive',
     description: 'Double-sided magnetic mobile whiteboards with markers.',
     iconName: 'whiteboards',
+    imageUrl: '/assets/images/addon-whiteboards.jpg',
     displayOrder: 3,
   },
   {
@@ -47,6 +50,7 @@ export const initialAddOns: AddOnOption[] = [
     category: 'Visual',
     description: 'Ultra 4K HD laser projectors with high lumens and screen.',
     iconName: 'projectors',
+    imageUrl: '/assets/images/addon-projectors.jpg',
     displayOrder: 4,
   },
   {
@@ -57,6 +61,7 @@ export const initialAddOns: AddOnOption[] = [
     category: 'Signage',
     description: 'Custom illuminated directional displays and entryway stands.',
     iconName: 'signage',
+    imageUrl: '/assets/images/addon-signage.jpg',
     displayOrder: 5,
   },
 ];
@@ -126,3 +131,4 @@ export const {
 } = addonsSlice.actions;
 
 export default addonsSlice.reducer;
+

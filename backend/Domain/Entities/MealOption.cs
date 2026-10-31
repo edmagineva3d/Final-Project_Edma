@@ -9,5 +9,6 @@ public sealed class MealOption : BaseEntity
     public decimal PricePerPerson { get; set; }
     public string Description { get; set; } = string.Empty;
     public string IconName { get; set; } = string.Empty;
+    public string ImageUrl { get; set; } = string.Empty;
     public int DisplayOrder { get; set; }
 }

@@ -31,3 +31,4 @@ public sealed class CreateEstimateValidator : AbstractValidator<CreateEstimateCo
             .Must(m => m.NumberOfPeople >= 0).WithMessage("Meal guest count cannot be negative.");
     }
 }
+

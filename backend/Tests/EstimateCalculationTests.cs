@@ -77,3 +77,4 @@ public sealed class EstimateCalculationTests
         Assert.Equal("Estimate.InvalidQuantity", result.Error?.Code);
     }
 }
+

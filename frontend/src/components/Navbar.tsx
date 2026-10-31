@@ -190,3 +190,4 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateSection }) => {
     </header>
   );
 };
+

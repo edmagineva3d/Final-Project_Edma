@@ -24,3 +24,4 @@ public sealed class DeleteEventCommandHandler(IAppDbContext dbContext)
         return Result<bool>.Success(true);
     }
 }
+

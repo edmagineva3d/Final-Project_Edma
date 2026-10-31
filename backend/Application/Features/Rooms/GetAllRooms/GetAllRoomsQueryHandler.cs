@@ -23,6 +23,7 @@ public sealed class GetAllRoomsQueryHandler(IAppDbContext dbContext)
                 r.UnitPrice,
                 r.Description,
                 r.IconName,
+                r.ImageUrl,
                 r.DisplayOrder
             ))
             .ToListAsync(cancellationToken);

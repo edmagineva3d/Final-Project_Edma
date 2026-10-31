@@ -77,3 +77,4 @@ public sealed class CatalogTests
         Assert.Equal(70m, result.Value.Single(m => m.Code == "dinner").PricePerPerson);
     }
 }
+

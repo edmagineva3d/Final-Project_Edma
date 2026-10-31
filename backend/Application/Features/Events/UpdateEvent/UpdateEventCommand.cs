@@ -14,3 +14,4 @@ public sealed record UpdateEventCommand(
     int EstimatedAttendees,
     string? Notes
 ) : ICommand<Result<EventDetailDto>>;
+

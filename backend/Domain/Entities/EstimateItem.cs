@@ -14,3 +14,4 @@ public sealed class EstimateItem : BaseEntity
     public int Quantity { get; set; }
     public decimal Subtotal { get; set; }
 }
+

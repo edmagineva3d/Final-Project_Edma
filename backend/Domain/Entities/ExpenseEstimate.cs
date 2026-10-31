@@ -22,3 +22,4 @@ public sealed class ExpenseEstimate : BaseEntity
 
     public List<EstimateItem> Items { get; set; } = new();
 }
+

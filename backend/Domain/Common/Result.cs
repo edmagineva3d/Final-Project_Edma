@@ -19,3 +19,4 @@ public sealed class Result<T>
 }
 
 public sealed record Error(string Code, string Message);
+

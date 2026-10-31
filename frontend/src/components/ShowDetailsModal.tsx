@@ -585,3 +585,4 @@ export const ShowDetailsModal: React.FC = () => {
     </div>
   );
 };
+

@@ -42,3 +42,4 @@ public sealed record EstimateItemDto(
     int Quantity,
     decimal Subtotal
 );
+

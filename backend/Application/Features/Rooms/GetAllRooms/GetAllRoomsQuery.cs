@@ -13,5 +13,6 @@ public sealed record RoomDto(
     decimal UnitPrice,
     string Description,
     string IconName,
+    string ImageUrl,
     int DisplayOrder
 );

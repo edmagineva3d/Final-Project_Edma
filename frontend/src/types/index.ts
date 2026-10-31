@@ -6,6 +6,7 @@ export interface RoomOption {
   unitPrice: number;
   description: string;
   iconName: string;
+  imageUrl?: string;
   displayOrder: number;
 }
 
@@ -17,6 +18,7 @@ export interface AddOnOption {
   category: string;
   description: string;
   iconName: string;
+  imageUrl?: string;
   displayOrder: number;
 }
 
@@ -27,6 +29,7 @@ export interface MealOption {
   pricePerPerson: number;
   description: string;
   iconName: string;
+  imageUrl?: string;
   displayOrder: number;
 }
 

@@ -45,3 +45,4 @@ public static class RoomEndpoints
             : result.ToProblemDetails();
     }
 }
+

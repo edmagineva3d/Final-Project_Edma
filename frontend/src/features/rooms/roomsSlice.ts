@@ -17,6 +17,7 @@ export const initialRooms: RoomOption[] = [
     unitPrice: 5500,
     description: 'Grand tiered hall with theatrical acoustics and stage for plenary sessions.',
     iconName: 'auditorium',
+    imageUrl: '/assets/images/room-auditorium.jpg',
     displayOrder: 1,
   },
   {
@@ -27,6 +28,7 @@ export const initialRooms: RoomOption[] = [
     unitPrice: 3500,
     description: 'Executive boardroom suite for roundtables and high-level strategy meetings.',
     iconName: 'conference',
+    imageUrl: '/assets/images/room-conference.jpg',
     displayOrder: 2,
   },
   {
@@ -37,6 +39,7 @@ export const initialRooms: RoomOption[] = [
     unitPrice: 700,
     description: 'Modern seminar space with flexible seating and presentation display.',
     iconName: 'presentation',
+    imageUrl: '/assets/images/room-presentation.jpg',
     displayOrder: 3,
   },
   {
@@ -47,6 +50,7 @@ export const initialRooms: RoomOption[] = [
     unitPrice: 900,
     description: 'Spacious collaborative workspace equipped for dynamic team workshops.',
     iconName: 'large-meeting',
+    imageUrl: '/assets/images/room-large-meeting.jpg',
     displayOrder: 4,
   },
   {
@@ -57,6 +61,7 @@ export const initialRooms: RoomOption[] = [
     unitPrice: 1100,
     description: 'Intimate breakout room for confidential discussions and private sessions.',
     iconName: 'small-meeting',
+    imageUrl: '/assets/images/room-small-meeting.jpg',
     displayOrder: 5,
   },
 ];
@@ -126,3 +131,4 @@ export const {
 } = roomsSlice.actions;
 
 export default roomsSlice.reducer;
+

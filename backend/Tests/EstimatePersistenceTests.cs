@@ -65,3 +65,4 @@ public sealed class EstimatePersistenceTests
         Assert.Contains(allResult.Value!, e => e.Id == estimateId);
     }
 }
+

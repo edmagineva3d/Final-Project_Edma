@@ -52,3 +52,4 @@ public sealed class ValidatorTests
         Assert.Contains(result.Errors, e => e.PropertyName == nameof(CreateEstimateCommand.NumberOfAttendees));
     }
 }
+

@@ -49,3 +49,4 @@ public sealed class GetEstimateByIdQueryHandler(IAppDbContext dbContext)
         return Result<EstimateDto>.Success(dto);
     }
 }
+

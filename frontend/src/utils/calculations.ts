@@ -37,3 +37,4 @@ export function verifyPdfExampleCalculation(): boolean {
 
   return roomsTotal === 11000 && addOnsTotal === 105 && mealsTotal === 2500 && grandTotal === 13605;
 }
+

@@ -24,3 +24,4 @@ public sealed record EventDetailDto(
     string? Notes,
     DateTime CreatedAt
 );
+

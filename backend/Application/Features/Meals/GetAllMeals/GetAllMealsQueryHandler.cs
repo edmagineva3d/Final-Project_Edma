@@ -22,6 +22,7 @@ public sealed class GetAllMealsQueryHandler(IAppDbContext dbContext)
                 m.PricePerPerson,
                 m.Description,
                 m.IconName,
+                m.ImageUrl,
                 m.DisplayOrder
             ))
             .ToListAsync(cancellationToken);

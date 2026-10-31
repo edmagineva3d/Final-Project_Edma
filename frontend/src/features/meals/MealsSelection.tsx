@@ -6,13 +6,7 @@ import {
   setDefaultAttendees,
 } from './mealsSlice';
 import { selectMealsTotal } from '../../store/selectors';
-import {
-  BreakfastGraphic,
-  LunchGraphic,
-  HighTeaGraphic,
-  DinnerGraphic,
-  StarFlowerIcon,
-} from '../../components/DecorativeAssets';
+import { StarFlowerIcon } from '../../components/DecorativeAssets';
 import { Utensils, Users, Check, AlertCircle } from 'lucide-react';
 import { MealOption } from '../../types';
 
@@ -23,29 +17,35 @@ export const MealsSelection: React.FC = () => {
   const defaultAttendees = useAppSelector((state) => state.meals.defaultAttendees);
   const mealsTotal = useAppSelector(selectMealsTotal);
 
-  const getGraphic = (code: string) => {
+  const getMealPhoto = (code: string, fallback?: string): string => {
+    if (fallback) return fallback;
     switch (code) {
       case 'breakfast':
-        return <BreakfastGraphic size={105} />;
+        return '/assets/images/meal-breakfast.jpg';
       case 'lunch':
-        return <LunchGraphic size={105} />;
+        return '/assets/images/meal-lunch.jpg';
       case 'high-tea':
-        return <HighTeaGraphic size={105} />;
+        return '/assets/images/meal-hightea.jpg';
       case 'dinner':
-        return <DinnerGraphic size={105} />;
+        return '/assets/images/meal-dinner.jpg';
       default:
-        return <BreakfastGraphic size={105} />;
+        return '/assets/images/meal-breakfast.jpg';
     }
   };
 
-  const getPastelBg = (index: number) => {
-    const bgs = [
-      '#FFE4F2', // soft blush pink (breakfast / cinnamon rolls)
-      '#DCFCE7', // soft mint (lunch)
-      '#EDE9FE', // soft lavender (high tea)
-      '#FEF9C3', // soft butter yellow (dinner)
-    ];
-    return bgs[index % bgs.length];
+  const getUnsplashFallback = (code: string): string => {
+    switch (code) {
+      case 'breakfast':
+        return 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80';
+      case 'lunch':
+        return 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80';
+      case 'high-tea':
+        return 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80';
+      case 'dinner':
+        return 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80';
+      default:
+        return 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80';
+    }
   };
 
   const handleGlobalAttendeesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,7 +95,7 @@ export const MealsSelection: React.FC = () => {
           </p>
         </div>
 
-        {/* Global Attendee Headcount Quick Setter (as suggested in PDF page 3) */}
+        {/* Global Attendee Headcount Quick Setter */}
         <div
           style={{
             maxWidth: '540px',
@@ -182,7 +182,7 @@ export const MealsSelection: React.FC = () => {
             gap: '1.75rem',
           }}
         >
-          {meals.map((meal: MealOption, idx: number) => {
+          {meals.map((meal: MealOption) => {
             const sel = selections[meal.code] || { selected: false, numberOfPeople: defaultAttendees };
             const subtotal = sel.selected ? meal.pricePerPerson * sel.numberOfPeople : 0;
 
@@ -197,21 +197,33 @@ export const MealsSelection: React.FC = () => {
                   transform: sel.selected ? 'translateY(-2px)' : 'none',
                 }}
               >
-                {/* Visual Header */}
+                {/* Real Photographic Header */}
                 <div
                   style={{
-                    backgroundColor: getPastelBg(idx),
-                    padding: '1.5rem 1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderBottom: '2.5px solid var(--color-border-bold)',
+                    height: '190px',
                     position: 'relative',
+                    overflow: 'hidden',
+                    borderBottom: '2.5px solid var(--color-border-bold)',
+                    backgroundColor: '#FFE4F2',
                   }}
                 >
-                  {getGraphic(meal.code)}
+                  <img
+                    src={meal.imageUrl || getMealPhoto(meal.code)}
+                    alt={meal.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.05)')}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = getUnsplashFallback(meal.code);
+                    }}
+                  />
 
-                  {/* Checkbox badge button */}
+                  {/* Inclusion toggle badge button */}
                   <button
                     type="button"
                     onClick={() => dispatch(toggleMeal(meal.code))}
@@ -222,17 +234,18 @@ export const MealsSelection: React.FC = () => {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.4rem',
-                      backgroundColor: sel.selected ? 'var(--color-cobalt)' : '#fff',
+                      backgroundColor: sel.selected ? 'var(--color-cobalt)' : 'rgba(255, 255, 255, 0.95)',
                       color: sel.selected ? '#fff' : 'var(--color-cobalt)',
                       border: '2px solid var(--color-cobalt)',
                       borderRadius: '9999px',
-                      padding: '4px 10px',
+                      padding: '4px 12px',
                       fontFamily: 'var(--font-display)',
                       fontWeight: 700,
-                      fontSize: '0.82rem',
+                      fontSize: '0.85rem',
                       cursor: 'pointer',
                       boxShadow: '0 2px 0 var(--color-cobalt)',
                       transition: 'all 0.15s ease',
+                      zIndex: 2,
                     }}
                   >
                     {sel.selected ? <Check size={14} /> : null}

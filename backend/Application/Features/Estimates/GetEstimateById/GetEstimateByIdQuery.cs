@@ -5,3 +5,4 @@ using Application.Features.Estimates.CalculateEstimate;
 using Domain.Common;
 
 public sealed record GetEstimateByIdQuery(Guid Id) : IQuery<Result<EstimateDto>>;
+

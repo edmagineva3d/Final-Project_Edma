@@ -23,6 +23,7 @@ public sealed class GetAllAddOnsQueryHandler(IAppDbContext dbContext)
                 a.Category,
                 a.Description,
                 a.IconName,
+                a.ImageUrl,
                 a.DisplayOrder
             ))
             .ToListAsync(cancellationToken);

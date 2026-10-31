@@ -10,5 +10,6 @@ public sealed class AddOnOption : BaseEntity
     public string Category { get; set; } = "General";
     public string Description { get; set; } = string.Empty;
     public string IconName { get; set; } = string.Empty;
+    public string ImageUrl { get; set; } = string.Empty;
     public int DisplayOrder { get; set; }
 }

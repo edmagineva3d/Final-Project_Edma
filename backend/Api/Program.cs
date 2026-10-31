@@ -117,6 +117,7 @@ using (var scope = app.Services.CreateScope())
                 UnitPrice = 5500m,
                 Description = "Grand tiered auditorium with professional stage, theatrical lighting, and seating for 200 guests.",
                 IconName = "auditorium",
+                ImageUrl = "/assets/images/room-auditorium.jpg",
                 DisplayOrder = 1
             },
             new RoomOption
@@ -128,6 +129,7 @@ using (var scope = app.Services.CreateScope())
                 UnitPrice = 3500m,
                 Description = "Executive boardroom suite with ergonomic leather seating, hybrid video conference bar, and private foyer.",
                 IconName = "conference",
+                ImageUrl = "/assets/images/room-conference.jpg",
                 DisplayOrder = 2
             },
             new RoomOption
@@ -139,6 +141,7 @@ using (var scope = app.Services.CreateScope())
                 UnitPrice = 700m,
                 Description = "Modern seminar hall with versatile classroom seating and dedicated presentation podium.",
                 IconName = "presentation",
+                ImageUrl = "/assets/images/room-presentation.jpg",
                 DisplayOrder = 3
             },
             new RoomOption
@@ -150,6 +153,7 @@ using (var scope = app.Services.CreateScope())
                 UnitPrice = 900m,
                 Description = "Spacious collaborative workshop room with modular tables and interactive digital whiteboard.",
                 IconName = "large-meeting",
+                ImageUrl = "/assets/images/room-large-meeting.jpg",
                 DisplayOrder = 4
             },
             new RoomOption
@@ -161,6 +165,7 @@ using (var scope = app.Services.CreateScope())
                 UnitPrice = 1100m,
                 Description = "Intimate breakout room perfect for VIP interviews, confidential negotiations, or focused discussions.",
                 IconName = "small-meeting",
+                ImageUrl = "/assets/images/room-small-meeting.jpg",
                 DisplayOrder = 5
             }
         );
@@ -180,6 +185,7 @@ using (var scope = app.Services.CreateScope())
                 Category = "Audio",
                 Description = "Premium high-clarity PA loudspeakers with stands and balanced audio cables.",
                 IconName = "speakers",
+                ImageUrl = "/assets/images/addon-speakers.jpg",
                 DisplayOrder = 1
             },
             new AddOnOption
@@ -191,6 +197,7 @@ using (var scope = app.Services.CreateScope())
                 Category = "Audio",
                 Description = "Wireless handheld and lightweight lapel condenser microphones with dual receivers.",
                 IconName = "microphones",
+                ImageUrl = "/assets/images/addon-microphones.jpg",
                 DisplayOrder = 2
             },
             new AddOnOption
@@ -202,6 +209,7 @@ using (var scope = app.Services.CreateScope())
                 Category = "Interactive",
                 Description = "Magnetic double-sided porcelain whiteboards complete with vibrant markers and erasers.",
                 IconName = "whiteboards",
+                ImageUrl = "/assets/images/addon-whiteboards.jpg",
                 DisplayOrder = 3
             },
             new AddOnOption
@@ -213,6 +221,7 @@ using (var scope = app.Services.CreateScope())
                 Category = "Visual",
                 Description = "Ultra HD 4K high-lumen laser projectors paired with motorized drop-down projection screens.",
                 IconName = "projectors",
+                ImageUrl = "/assets/images/addon-projectors.jpg",
                 DisplayOrder = 4
             },
             new AddOnOption
@@ -224,6 +233,7 @@ using (var scope = app.Services.CreateScope())
                 Category = "Signage",
                 Description = "Custom illuminated directional digital signage displays and branded entrance banners.",
                 IconName = "signage",
+                ImageUrl = "/assets/images/addon-signage.jpg",
                 DisplayOrder = 5
             }
         );
@@ -242,6 +252,7 @@ using (var scope = app.Services.CreateScope())
                 PricePerPerson = 50m,
                 Description = "Artisanal cinnamon rolls, freshly baked croissants, seasonal berries, fresh juices, and specialty barista coffee.",
                 IconName = "breakfast",
+                ImageUrl = "/assets/images/meal-breakfast.jpg",
                 DisplayOrder = 1
             },
             new MealOption
@@ -252,6 +263,7 @@ using (var scope = app.Services.CreateScope())
                 PricePerPerson = 60m,
                 Description = "Chef's gourmet deli buffet with roasted carved meats, organic farm greens, warm artisan bread, and sweet treats.",
                 IconName = "lunch",
+                ImageUrl = "/assets/images/meal-lunch.jpg",
                 DisplayOrder = 2
             },
             new MealOption
@@ -262,6 +274,7 @@ using (var scope = app.Services.CreateScope())
                 PricePerPerson = 25m,
                 Description = "Traditional high tea service with warm butter scones, clotted cream, fruit preserves, and delicate finger sandwiches.",
                 IconName = "high-tea",
+                ImageUrl = "/assets/images/meal-hightea.jpg",
                 DisplayOrder = 3
             },
             new MealOption
@@ -272,6 +285,7 @@ using (var scope = app.Services.CreateScope())
                 PricePerPerson = 70m,
                 Description = "Three-course plated gala banquet featuring prime entrees, exquisite desserts, and wine service.",
                 IconName = "dinner",
+                ImageUrl = "/assets/images/meal-dinner.jpg",
                 DisplayOrder = 4
             }
         );

@@ -32,3 +32,4 @@ public sealed class GetAllEventsQueryHandler(IAppDbContext dbContext)
         return Result<List<EventDetailDto>>.Success(events);
     }
 }
+

@@ -5,3 +5,4 @@ using Application.Features.Events.CreateEvent;
 using Domain.Common;
 
 public sealed record GetEventByIdQuery(Guid Id) : IQuery<Result<EventDetailDto>>;
+

@@ -28,3 +28,4 @@ public sealed class UpdateEventValidator : AbstractValidator<UpdateEventCommand>
             .GreaterThanOrEqualTo(x => x.StartDate).WithMessage("End date must be on or after start date.");
     }
 }
+

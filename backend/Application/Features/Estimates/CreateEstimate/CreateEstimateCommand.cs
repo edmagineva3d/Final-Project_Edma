@@ -15,3 +15,4 @@ public sealed record CreateEstimateCommand(
     List<MealSelectionInput>? Meals,
     string? Notes
 ) : ICommand<Result<EstimateDto>>;
+

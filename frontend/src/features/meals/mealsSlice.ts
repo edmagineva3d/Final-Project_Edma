@@ -22,6 +22,7 @@ export const initialMeals: MealOption[] = [
     pricePerPerson: 50,
     description: 'Fresh pastries, cinnamon rolls, organic berries, juices, and espresso.',
     iconName: 'breakfast',
+    imageUrl: '/assets/images/meal-breakfast.jpg',
     displayOrder: 1,
   },
   {
@@ -31,6 +32,7 @@ export const initialMeals: MealOption[] = [
     pricePerPerson: 60,
     description: 'Hot farm-to-table buffet, artisan bread, fresh salads, and desserts.',
     iconName: 'lunch',
+    imageUrl: '/assets/images/meal-lunch.jpg',
     displayOrder: 2,
   },
   {
@@ -40,6 +42,7 @@ export const initialMeals: MealOption[] = [
     pricePerPerson: 25,
     description: 'Afternoon tea service with warm scones, clotted cream, and finger sandwiches.',
     iconName: 'high-tea',
+    imageUrl: '/assets/images/meal-hightea.jpg',
     displayOrder: 3,
   },
   {
@@ -49,6 +52,7 @@ export const initialMeals: MealOption[] = [
     pricePerPerson: 70,
     description: 'Three-course plated gala dinner banquet with curated culinary pairings.',
     iconName: 'dinner',
+    imageUrl: '/assets/images/meal-dinner.jpg',
     displayOrder: 4,
   },
 ];
@@ -136,3 +140,4 @@ export const {
 } = mealsSlice.actions;
 
 export default mealsSlice.reducer;
+

@@ -29,6 +29,7 @@ public sealed class GetMealByCodeQueryHandler(IAppDbContext dbContext)
             meal.PricePerPerson,
             meal.Description,
             meal.IconName,
+            meal.ImageUrl,
             meal.DisplayOrder
         );
 

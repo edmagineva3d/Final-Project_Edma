@@ -87,3 +87,4 @@ public sealed class AppDbContext : DbContext, IAppDbContext
         });
     }
 }
+

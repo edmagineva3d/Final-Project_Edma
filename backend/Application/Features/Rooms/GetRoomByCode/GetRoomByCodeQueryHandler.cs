@@ -30,6 +30,7 @@ public sealed class GetRoomByCodeQueryHandler(IAppDbContext dbContext)
             room.UnitPrice,
             room.Description,
             room.IconName,
+            room.ImageUrl,
             room.DisplayOrder
         );
 

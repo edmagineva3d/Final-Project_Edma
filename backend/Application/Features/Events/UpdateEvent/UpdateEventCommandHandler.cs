@@ -54,3 +54,4 @@ public sealed class UpdateEventCommandHandler(
         return Result<EventDetailDto>.Success(dto);
     }
 }
+

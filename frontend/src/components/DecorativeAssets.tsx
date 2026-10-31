@@ -188,3 +188,4 @@ export const DinnerGraphic: React.FC<{ size?: number }> = ({ size = 120 }) => (
     <line x1="38" y1="105" x2="122" y2="105" stroke="#1636B0" strokeWidth="4" strokeLinecap="round" />
   </svg>
 );
+

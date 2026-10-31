@@ -37,3 +37,4 @@ public sealed class GetEventByIdQueryHandler(IAppDbContext dbContext)
         return Result<EventDetailDto>.Success(dto);
     }
 }
+

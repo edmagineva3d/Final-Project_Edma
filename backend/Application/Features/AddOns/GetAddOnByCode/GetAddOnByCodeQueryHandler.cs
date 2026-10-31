@@ -30,6 +30,7 @@ public sealed class GetAddOnByCodeQueryHandler(IAppDbContext dbContext)
             addOn.Category,
             addOn.Description,
             addOn.IconName,
+            addOn.ImageUrl,
             addOn.DisplayOrder
         );
 

@@ -31,3 +31,4 @@ public static class ResultExtensions
         _ => 500
     };
 }
+

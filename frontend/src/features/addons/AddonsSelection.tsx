@@ -3,14 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { incrementAddOn, decrementAddOn } from './addonsSlice';
 import { selectAddOnsTotal } from '../../store/selectors';
 import { QuantityControl } from '../../components/QuantityControl';
-import {
-  SpeakerGraphic,
-  MicrophoneGraphic,
-  WhiteboardGraphic,
-  ProjectorGraphic,
-  SignageGraphic,
-  StarFlowerIcon,
-} from '../../components/DecorativeAssets';
+import { StarFlowerIcon } from '../../components/DecorativeAssets';
 import { Sparkles, Sliders } from 'lucide-react';
 import { AddOnOption } from '../../types';
 
@@ -20,32 +13,39 @@ export const AddonsSelection: React.FC = () => {
   const quantities = useAppSelector((state) => state.addons.quantities);
   const addonsTotal = useAppSelector(selectAddOnsTotal);
 
-  const getGraphic = (code: string) => {
+  const getAddOnPhoto = (code: string, fallback?: string): string => {
+    if (fallback) return fallback;
     switch (code) {
-      case 'speakers':
-        return <SpeakerGraphic size={105} />;
-      case 'microphones':
-        return <MicrophoneGraphic size={105} />;
-      case 'whiteboards':
-        return <WhiteboardGraphic size={105} />;
       case 'projectors':
-        return <ProjectorGraphic size={105} />;
+        return '/assets/images/addon-projectors.jpg';
+      case 'speakers':
+        return '/assets/images/addon-speakers.jpg';
+      case 'microphones':
+        return '/assets/images/addon-microphones.jpg';
+      case 'whiteboards':
+        return '/assets/images/addon-whiteboards.jpg';
       case 'signage':
-        return <SignageGraphic size={105} />;
+        return '/assets/images/addon-signage.jpg';
       default:
-        return <SpeakerGraphic size={105} />;
+        return '/assets/images/addon-speakers.jpg';
     }
   };
 
-  const getCardBg = (index: number) => {
-    const bgs = [
-      '#FEF9C3', // butter yellow
-      '#FFE4F2', // blush pink
-      '#E0F2FE', // sky blue
-      '#EDE9FE', // lavender
-      '#DCFCE7', // mint
-    ];
-    return bgs[index % bgs.length];
+  const getUnsplashFallback = (code: string): string => {
+    switch (code) {
+      case 'projectors':
+        return 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80';
+      case 'speakers':
+        return 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80';
+      case 'microphones':
+        return 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80';
+      case 'whiteboards':
+        return 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80';
+      case 'signage':
+        return 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80';
+      default:
+        return 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80';
+    }
   };
 
   return (
@@ -85,7 +85,7 @@ export const AddonsSelection: React.FC = () => {
             gap: '1.75rem',
           }}
         >
-          {addons.map((addon: AddOnOption, idx: number) => {
+          {addons.map((addon: AddOnOption) => {
             const qty = quantities[addon.code] || 0;
             const subtotal = addon.unitPrice * qty;
 
@@ -96,37 +96,53 @@ export const AddonsSelection: React.FC = () => {
                 style={{
                   backgroundColor: '#fff',
                   border: qty > 0 ? '3px solid var(--color-cobalt)' : '2.5px solid var(--color-border-bold)',
+                  boxShadow: qty > 0 ? '0 10px 0 var(--color-cobalt)' : '0 8px 0 rgba(22, 54, 176, 0.15)',
                 }}
               >
-                {/* Visual Header */}
+                {/* Real Photographic Header */}
                 <div
                   style={{
-                    backgroundColor: getCardBg(idx),
-                    padding: '1.5rem 1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderBottom: '2.5px solid var(--color-border-bold)',
+                    height: '190px',
                     position: 'relative',
+                    overflow: 'hidden',
+                    borderBottom: '2.5px solid var(--color-border-bold)',
+                    backgroundColor: '#FEF9C3',
                   }}
                 >
-                  {getGraphic(addon.code)}
+                  <img
+                    src={addon.imageUrl || getAddOnPhoto(addon.code)}
+                    alt={addon.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.05)')}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = getUnsplashFallback(addon.code);
+                    }}
+                  />
+
+                  {/* Category badge */}
                   <span
                     style={{
                       position: 'absolute',
                       top: '12px',
                       right: '12px',
-                      backgroundColor: '#fff',
+                      backgroundColor: 'rgba(255, 255, 255, 0.95)',
                       border: '1.5px solid var(--color-cobalt)',
                       borderRadius: '9999px',
-                      padding: '2px 8px',
-                      fontSize: '0.78rem',
+                      padding: '3px 10px',
+                      fontSize: '0.8rem',
                       fontFamily: 'var(--font-display)',
                       fontWeight: 700,
                       color: 'var(--color-cobalt)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '3px',
+                      gap: '4px',
+                      boxShadow: '0 2px 0 var(--color-cobalt)',
                     }}
                   >
                     <Sparkles size={12} /> {addon.category}

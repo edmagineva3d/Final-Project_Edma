@@ -25,3 +25,4 @@ public sealed class CreateEventValidator : AbstractValidator<CreateEventCommand>
             .GreaterThanOrEqualTo(x => x.StartDate).WithMessage("End date must be on or after start date.");
     }
 }
+

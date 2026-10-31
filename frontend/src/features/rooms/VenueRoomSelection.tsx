@@ -3,12 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { incrementRoom, decrementRoom } from './roomsSlice';
 import { selectRoomsTotal } from '../../store/selectors';
 import { QuantityControl } from '../../components/QuantityControl';
-import {
-  RoomAuditoriumGraphic,
-  RoomConferenceGraphic,
-  RoomPresentationGraphic,
-  StarFlowerIcon,
-} from '../../components/DecorativeAssets';
+import { StarFlowerIcon } from '../../components/DecorativeAssets';
 import { Users, Building2 } from 'lucide-react';
 import { RoomOption } from '../../types';
 
@@ -18,32 +13,40 @@ export const VenueRoomSelection: React.FC = () => {
   const quantities = useAppSelector((state) => state.rooms.quantities);
   const roomsTotal = useAppSelector(selectRoomsTotal);
 
-  const getGraphic = (code: string) => {
+  // High-resolution real photographs
+  const getRoomPhoto = (code: string, fallback?: string): string => {
+    if (fallback) return fallback;
     switch (code) {
       case 'auditorium-hall':
-        return <RoomAuditoriumGraphic size={110} />;
+        return '/assets/images/room-auditorium.jpg';
       case 'conference-room':
-        return <RoomConferenceGraphic size={110} />;
+        return '/assets/images/room-conference.jpg';
       case 'presentation-room':
-        return <RoomPresentationGraphic size={110} />;
+        return '/assets/images/room-presentation.jpg';
       case 'large-meeting-room':
-        return <RoomConferenceGraphic size={110} />;
+        return '/assets/images/room-large-meeting.jpg';
       case 'small-meeting-room':
-        return <RoomPresentationGraphic size={110} />;
+        return '/assets/images/room-small-meeting.jpg';
       default:
-        return <RoomAuditoriumGraphic size={110} />;
+        return '/assets/images/room-auditorium.jpg';
     }
   };
 
-  const getPastelBg = (index: number) => {
-    const bgs = [
-      '#EDE9FE', // soft lavender
-      '#E0F2FE', // soft sky blue
-      '#FFE4F2', // soft blush pink
-      '#FEF9C3', // soft butter yellow
-      '#DCFCE7', // soft mint
-    ];
-    return bgs[index % bgs.length];
+  const getUnsplashFallback = (code: string): string => {
+    switch (code) {
+      case 'auditorium-hall':
+        return 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80';
+      case 'conference-room':
+        return 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80';
+      case 'presentation-room':
+        return 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80';
+      case 'large-meeting-room':
+        return 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80';
+      case 'small-meeting-room':
+        return 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80';
+      default:
+        return 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80';
+    }
   };
 
   return (
@@ -83,7 +86,7 @@ export const VenueRoomSelection: React.FC = () => {
             gap: '1.75rem',
           }}
         >
-          {rooms.map((room: RoomOption, idx: number) => {
+          {rooms.map((room: RoomOption) => {
             const qty = quantities[room.code] || 0;
             const subtotal = room.unitPrice * qty;
 
@@ -94,40 +97,56 @@ export const VenueRoomSelection: React.FC = () => {
                 style={{
                   backgroundColor: '#fff',
                   border: qty > 0 ? '3px solid var(--color-cobalt)' : '2.5px solid var(--color-border-bold)',
+                  boxShadow: qty > 0 ? '0 10px 0 var(--color-cobalt)' : '0 8px 0 rgba(22, 54, 176, 0.15)',
                 }}
               >
-                {/* Visual Header with Pastel Background */}
+                {/* Real Photographic Header */}
                 <div
                   style={{
-                    backgroundColor: getPastelBg(idx),
-                    padding: '1.5rem 1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderBottom: '2.5px solid var(--color-border-bold)',
+                    height: '190px',
                     position: 'relative',
+                    overflow: 'hidden',
+                    borderBottom: '2.5px solid var(--color-border-bold)',
+                    backgroundColor: '#EDE9FE',
                   }}
                 >
-                  {getGraphic(room.code)}
+                  <img
+                    src={room.imageUrl || getRoomPhoto(room.code)}
+                    alt={room.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.05)')}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = getUnsplashFallback(room.code);
+                    }}
+                  />
+
+                  {/* Capacity badge */}
                   <span
                     style={{
                       position: 'absolute',
                       top: '12px',
                       right: '12px',
-                      backgroundColor: '#fff',
+                      backgroundColor: 'rgba(255, 255, 255, 0.95)',
                       border: '1.5px solid var(--color-cobalt)',
                       borderRadius: '9999px',
-                      padding: '2px 8px',
-                      fontSize: '0.78rem',
+                      padding: '3px 10px',
+                      fontSize: '0.8rem',
                       fontFamily: 'var(--font-display)',
                       fontWeight: 700,
                       color: 'var(--color-cobalt)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '3px',
+                      gap: '4px',
+                      boxShadow: '0 2px 0 var(--color-cobalt)',
                     }}
                   >
-                    <Users size={12} /> Cap: {room.capacity}
+                    <Users size={13} /> Capacity: {room.capacity}
                   </span>
                 </div>
 

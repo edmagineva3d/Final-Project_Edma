@@ -13,5 +13,6 @@ public sealed record AddOnDto(
     string Category,
     string Description,
     string IconName,
+    string ImageUrl,
     int DisplayOrder
 );

@@ -12,5 +12,6 @@ public sealed record MealDto(
     decimal PricePerPerson,
     string Description,
     string IconName,
+    string ImageUrl,
     int DisplayOrder
 );
