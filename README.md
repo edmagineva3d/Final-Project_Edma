@@ -192,37 +192,37 @@ The following screenshots demonstrate the actual execution of the backend, API r
 
 This screenshot shows the ASP.NET Core backend application running through the terminal. It provides evidence that the backend server has started and is ready to receive API requests.
 
-![Backend Running](screenshots/SS%201.png)
+![Backend Running](screenshot/SS%201.png)
 
 ### SS 2 – Catalog API Successful Response
 
 This screenshot shows the Catalog API being tested through Scalar. The successful response demonstrates that the backend can retrieve and return catalog information in JSON format.
 
-![Catalog API](screenshots/SS%202.png)
+![Catalog API](screenshot/SS%202.png)
 
 ### SS 3 – Booking API Successfully Created
 
 This screenshot shows a booking creation request submitted through Scalar. The `201 Created` HTTP response indicates that the backend successfully processed the booking creation request.
 
-![Booking API](screenshots/SS%203.png)
+![Booking API](screenshot/SS%203.png)
 
 ### SS 4 – Frontend Booking Confirmation
 
 This screenshot shows the Gather & Co. frontend displaying the booking confirmation. It demonstrates how booking details are presented to the user after the booking process.
 
-![Booking Confirmation](screenshots/SS%204.png)
+![Booking Confirmation](screenshot/SS%204.png)
 
 ### SS 5 – Backend and Frontend Booking Results
 
 This screenshot presents the backend booking response alongside the frontend booking confirmation. It allows the booking information returned by the backend to be compared with the information displayed in the frontend.
 
-![Backend and Frontend Booking](screenshots/SS%205.png)
+![Backend and Frontend Booking](screenshot/SS%205.png)
 
 ### SS 6 – Frontend and Backend Network Integration
 
 This screenshot shows the application running in the browser with the Developer Tools Network tab open. Requests such as `catalog`, `estimates`, and `bookings` show successful HTTP `200` responses, providing evidence of communication between the frontend and backend.
 
-![Network Integration](screenshots/SS%206.png)
+![Network Integration](screenshot/SS%206.png)
 
 ---
 
