@@ -342,7 +342,7 @@ Make sure the following tools are installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/edmagineva3d/Final-Project_Edma.git
 cd FinalProject-Edma
 ```
 
