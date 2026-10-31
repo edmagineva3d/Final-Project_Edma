@@ -1,334 +1,464 @@
-# Gather & Co. — Conference Event Planner Web Application
+# 🎉 Gather & Co. – Conference Event Planner
 
-> **Production-Quality Full-Stack Conference Planning System**  
-> Developed for Academic Final Project Submission by **edmagineva3d** (`edmagineva11@gmail.com`).  
-> Frontend: **React 18 + TypeScript + Vite + Redux Toolkit**  
-> Backend: **.NET 10 Web API + Vertical Slice Architecture + EF Core SQLite**  
+<div align="center">
 
----
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=22&duration=3000&pause=1000&color=6366F1&center=true&vCenter=true&width=750&lines=Welcome+to+Gather+%26+Co.;Conference+Event+Planning+Application;Select+Venues%2C+Rooms%2C+Add-ons+and+Meals;Manage+Event+Estimates+and+Bookings;React+%7C+TypeScript+%7C+ASP.NET+Core" alt="Typing SVG" />
 
-## 1. Project Overview
+**Plan. Customize. Estimate. Book.**
 
-**Gather & Co. Conference Event Planner** is a modern, responsive, full-stack web application designed to streamline conference budget estimation and venue booking. The system provides seamless synchronization between a playful, pastel retro user interface and an authoritative Vertical Slice backend engine.
+A web-based conference event planning application that helps users organize event requirements, calculate costs, and manage bookings.
 
-### Key Highlights
-- **Playful, Artisanal Visual Design**: Faithful recreation of the reference website design featuring warm butter cream backgrounds, scalloped marquee ribbons, checkered pink and cobalt borders, tactile squishy cards, and rounded retro typography.
-- **Dynamic Calculation Engine**: Subtotals for Venue Rooms, AV Equipment, and Catering Meals compute live without hardcoding.
-- **Authoritative Server-Side Validation**: Backend recalculates and validates estimates to ensure accurate totals.
-- **Persistent Database Storage**: Complete SQLite persistence using Entity Framework Core, storing events and customized expense estimates.
-- **Four-Column Itemized Expense Table**: "Show Details" modal showcasing item descriptions, unit rates, quantities, and individual subtotals.
-- **Saved Estimates Drawer**: Direct retrieval and history viewing of quotes stored in the database.
+</div>
 
 ---
 
-## 2. Main Features
+## 📖 About the Project
 
-### A. Landing Page & Brand Experience
-- Brand narrative introducing **Gather & Co.** and the philosophy of joyful, seamless event planning.
-- High-impact hero section with rounded collage styling, seasonal badges, and responsive action buttons.
-- Continuous undulating marquee banner with floral star accents (`✦`).
-- Visual overview cards leading into the planning workflow.
+**Gather & Co.** is a Conference Event Planner application developed to simplify the process of organizing and managing conference events. It allows users to select venues and rooms, customize additional equipment and catering services, review their selected items, calculate event expenses, and submit booking information.
 
-### B. Venue Room Selection (5 Official Rooms)
-Users select the exact quantity of conference spaces needed:
-| Room Type | Capacity | Unit Price |
-| :--- | :---: | :---: |
-| **Auditorium Hall** | 200 | $5,500 |
-| **Conference Room** | 15 | $3,500 |
-| **Presentation Room** | 50 | $700 |
-| **Large Meeting Room** | 10 | $900 |
-| **Small Meeting Room** | 5 | $1,100 |
-- Increment (`+`) and decrement (`-`) quantity controls with zero-floor enforcement.
-- Automatic individual room subtotal calculation.
-- Live Room Selection Total bar.
+The application is composed of two major parts:
 
-### C. AV Equipment Add-ons Selection (5 Official Items)
-| Equipment Type | Category | Unit Price |
-| :--- | :---: | :---: |
-| **Speakers** | Audio | $35 |
-| **Microphones** | Audio | $45 |
-| **Whiteboards** | Interactive | $80 |
-| **Projectors** | Visual | $200 |
-| **Signage** | Directional | $80 |
-- Live subtotal indicators for each equipment item.
-- Live Add-ons Selection Total bar.
+- **Frontend – Systems Integration and Architecture (SIA):** Responsible for the user interface, event planning experience, application state management, and communication with the backend.
+- **Backend – Integrative Programming 2 (IP2):** Responsible for API operations, application logic, data validation, booking management, and database interactions.
 
-### D. Catering Meals Selection (4 Official Options)
-| Meal Course | Price per Person |
-| :--- | :---: |
-| **Breakfast** | $50 |
-| **Lunch** | $60 |
-| **High Tea** | $25 |
-| **Dinner** | $70 |
-- Global attendee count synchronizer.
-- Individual checkboxes to include or exclude courses.
-- Per-meal participant count input with negative prevention.
-- Automatic meals subtotal and live Meals Selection Total bar.
-
-### E. Automatic Cost Overview & Grand Total
-- Dynamically derives:
-  $$\text{Grand Total} = \text{Rooms Total} + \text{Add-ons Total} + \text{Meals Total}$$
-- Real-time updates without page reloads.
-- Standard currency formatting (`$X,XXX`).
-
-### F. Show Details Popup Modal
-- Triggered from the navigation bar.
-- Displays a structured 4-column summary table:
-  - **Selection Type**
-  - **Unit Cost**
-  - **Quantity**
-  - **Subtotal**
-- Clear identification and filtering of unselected zero-quantity items.
-- Organizer & Event title customization fields.
-- **Save Estimate to DB** button persisting quotes to the backend SQLite database.
-- **Reset Selections** button to restart planning.
+The project demonstrates how a frontend application integrates with a backend service to process and manage conference event information.
 
 ---
 
-## 3. Technology Stack
+## ✨ Features and Functionalities
+
+### 🏛️ 1. Venue and Room Selection
+
+The Venue and Room Selection feature allows users to explore and select the appropriate venue and room for their conference event.
+
+**Functionalities:**
+- Displays available venue and room options.
+- Allows users to select their preferred room.
+- Supports event customization based on room selection.
+- Includes selected room information in the event planning process.
+- Updates the selected items used for event cost computation.
+
+**Technology used:** React, TypeScript, and Redux Toolkit for the user interface and application state management.
+
+**Component:** `VenueRoomSelection.tsx`
+
+### 🎤 2. Audio-Visual Add-ons Selection
+
+The Add-ons Selection feature allows users to customize their conference requirements by selecting additional equipment and services.
+
+**Functionalities:**
+- Displays available add-on options.
+- Allows users to select additional event equipment.
+- Updates selections based on user interaction.
+- Includes selected add-ons in the cart and event cost summary.
+
+**Technology used:** React and TypeScript for component-based interaction, with Redux Toolkit for managing application selections.
+
+**Component:** `AddonsSelection.tsx`
+
+### 🍽️ 3. Meals and Catering Selection
+
+The Meals Selection feature provides users with meal and catering options for their planned conference.
+
+**Functionalities:**
+- Displays available meal options.
+- Allows users to select catering requirements.
+- Updates meal selections in the event configuration.
+- Includes selected meals in the cart and total cost calculation.
+
+**Technology used:** React, TypeScript, and Redux Toolkit.
+
+**Component:** `MealsSelection.tsx`
+
+### 🛒 4. Cart Management
+
+The Cart feature gathers the selected rooms, add-ons, and meals into one place so users can review their conference requirements before proceeding.
+
+**Functionalities:**
+- Displays selected event items.
+- Provides an overview of the user's selections.
+- Allows users to review their planned event requirements.
+- Shows the corresponding item costs.
+- Supports the checkout process.
+
+**Technology used:** React, TypeScript, and Redux Toolkit for managing and displaying selected items.
+
+**Components:** `CartDrawer.tsx` and cart-related feature components.
+
+### 💰 5. Summary and Total Cost Calculation
+
+The Summary Totals feature provides an overview of the estimated expenses based on the user's selected event requirements.
+
+**Functionalities:**
+- Displays the summary of selected event items.
+- Computes and presents the total estimated cost.
+- Updates the displayed amount when selections change.
+- Helps users review their planned event expenses before checkout.
+
+**Technology used:** React, TypeScript, and Redux Toolkit selectors for accessing application state and displaying calculated totals.
+
+**Component:** `SummaryTotalsSection.tsx`
+
+### 📋 6. Event Estimates Management
+
+The Estimates feature supports the management of saved event estimates.
+
+**Functionalities:**
+- Communicates with the backend estimate-related API.
+- Supports retrieving estimate information.
+- Allows the application to display saved event planning information when available through the API.
+- Helps users keep track of their planned event costs.
+
+**Technology used:** React, TypeScript, API service integration, and ASP.NET Core backend endpoints.
+
+### 🧾 7. Checkout Process
+
+The Checkout feature provides the interface for proceeding with a conference booking after reviewing the selected event requirements.
+
+**Functionalities:**
+- Presents the checkout interface.
+- Collects the booking information required by the application.
+- Prepares the selected event details for submission.
+- Connects the frontend checkout process to the backend booking API.
+
+**Technology used:** React, TypeScript, Redux Toolkit, and HTTP API requests.
+
+**Component:** `CheckoutModal.tsx`
+
+### ✅ 8. Booking Confirmation
+
+The Booking Confirmation feature displays booking information after the booking process has been completed successfully.
+
+**Functionalities:**
+- Displays the booking confirmation interface.
+- Presents the booking reference and available booking details.
+- Shows relevant event information.
+- Provides users with confirmation of their booking submission.
+
+**Technology used:** React, TypeScript, and backend API integration.
+
+**Component:** `BookingConfirmationModal.tsx`
+
+### 📚 9. Bookings History
+
+The Bookings History feature provides access to previously created bookings.
+
+**Functionalities:**
+- Retrieves booking information through the backend API.
+- Displays available booking records.
+- Allows users to review their existing booking details.
+- Helps users keep track of submitted conference bookings.
+
+**Technology used:** React, TypeScript, ASP.NET Core API, and SQLite database.
+
+**Component:** `BookingsHistoryDrawer.tsx`
+
+### 🔗 10. Frontend and Backend Integration
+
+The application connects its React frontend to the ASP.NET Core backend through HTTP requests.
+
+**Functionalities:**
+- Retrieves catalog information from the backend.
+- Sends cart validation requests.
+- Communicates with estimate-related endpoints.
+- Submits booking information.
+- Retrieves existing booking records.
+- Processes backend responses and displays relevant information in the frontend.
+
+**Technology used:** React, TypeScript, ASP.NET Core Web API, C#, Entity Framework Core, and SQLite.
+
+**Frontend service:** `api.ts`
+
+### 🧭 11. Navigation and Application Layout
+
+The navigation component provides access to the application's main sections and helps users move through the event planning interface.
+
+**Functionalities:**
+- Provides the main application navigation.
+- Organizes the interface for easier access to event planning features.
+- Supports navigation between the application's different sections.
+
+**Technology used:** React, TypeScript, and CSS.
+
+**Component:** `Navbar.tsx`
+
+---
+
+## 📸 Screenshots and Project Evidence
+
+The following screenshots demonstrate the actual execution of the backend, API requests, booking operations, and frontend-backend integration.
+
+### SS 1 – Backend Application Running
+
+This screenshot shows the ASP.NET Core backend application running through the terminal. It provides evidence that the backend server has started and is ready to receive API requests.
+
+![Backend Running](screenshots/SS%201.png)
+
+### SS 2 – Catalog API Successful Response
+
+This screenshot shows the Catalog API being tested through Scalar. The successful response demonstrates that the backend can retrieve and return catalog information in JSON format.
+
+![Catalog API](screenshots/SS%202.png)
+
+### SS 3 – Booking API Successfully Created
+
+This screenshot shows a booking creation request submitted through Scalar. The `201 Created` HTTP response indicates that the backend successfully processed the booking creation request.
+
+![Booking API](screenshots/SS%203.png)
+
+### SS 4 – Frontend Booking Confirmation
+
+This screenshot shows the Gather & Co. frontend displaying the booking confirmation. It demonstrates how booking details are presented to the user after the booking process.
+
+![Booking Confirmation](screenshots/SS%204.png)
+
+### SS 5 – Backend and Frontend Booking Results
+
+This screenshot presents the backend booking response alongside the frontend booking confirmation. It allows the booking information returned by the backend to be compared with the information displayed in the frontend.
+
+![Backend and Frontend Booking](screenshots/SS%205.png)
+
+### SS 6 – Frontend and Backend Network Integration
+
+This screenshot shows the application running in the browser with the Developer Tools Network tab open. Requests such as `catalog`, `estimates`, and `bookings` show successful HTTP `200` responses, providing evidence of communication between the frontend and backend.
+
+![Network Integration](screenshots/SS%206.png)
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend Development
+
+| Technology | Purpose |
+|---|---|
+| React | Builds the user interface using reusable components. |
+| TypeScript | Adds static typing to JavaScript code. |
+| Vite | Provides the frontend development server and build process. |
+| Redux Toolkit | Manages shared application state and user selections. |
+| CSS | Handles application layout, styling, and visual presentation. |
+| Lucide React | Provides icons used throughout the application. |
+
+### Backend Development
+
+| Technology | Purpose |
+|---|---|
+| C# | Programming language used for backend implementation. |
+| ASP.NET Core | Framework for building HTTP APIs. |
+| .NET 10 | Backend development platform. |
+| Entity Framework Core | Handles database access and data persistence. |
+| SQLite | Relational database used for application data. |
+| FluentValidation | Provides request and input validation. |
+| Scalar | Provides interactive API documentation and endpoint testing. |
+| xUnit | Supports automated backend testing. |
+
+---
+
+## 🏗️ Application Architecture
+
+The project separates the frontend and backend responsibilities.
 
 ### Frontend
-- **Framework**: React 18
-- **Language**: TypeScript (Strict typing, no loose JavaScript)
-- **Build Tool**: Vite 8
-- **State Management**: Redux Toolkit (Typed hooks `useAppDispatch`, `useAppSelector`)
-- **Icons**: Lucide React + Custom handcrafted squishy SVG assets
-- **Styling**: Modern CSS3 (CSS Variables, Flexbox, CSS Grid, Keyframe Animations)
-- **Typography**: Fredoka, Comfortaa, Quicksand (Google Fonts)
+
+The frontend is built using React and TypeScript. It handles the user interface, event selection, cart management, cost summaries, checkout, and presentation of booking information.
+
+Redux Toolkit is used to manage shared application state, while the API service handles communication with the backend.
 
 ### Backend
-- **Framework**: .NET 10 Web API
-- **Architecture**: Vertical Slice Architecture (CQRS with Commands, Queries, Handlers, Validators)
-- **ORM / Persistence**: Entity Framework Core 10 with SQLite provider
-- **Validation**: FluentValidation 11
-- **API Documentation**: Microsoft OpenAPI + Scalar Interactive Reference (`/scalar/v1`)
-- **Testing**: xUnit with InMemory EF Core provider
+
+The backend is developed using ASP.NET Core and follows a Vertical Slice Architecture approach.
+
+Its responsibilities include handling API requests, executing application operations, validating data, managing bookings, and interacting with the SQLite database through Entity Framework Core.
+
+### Database
+
+SQLite is used as the application's relational database. Entity Framework Core provides the data access layer for storing and retrieving application information.
 
 ---
 
-## 4. Architecture & Directory Structure
-
-```
-FinalProject-Edma/
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── app/                 # Typed Redux store and hooks
-│   │   │   ├── hooks.ts
-│   │   │   └── store.ts
-│   │   ├── components/          # Reusable UI presentation components
-│   │   │   ├── DecorativeAssets.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── QuantityControl.tsx
-│   │   │   ├── SavedQuotesDrawer.tsx
-│   │   │   ├── ShowDetailsModal.tsx
-│   │   │   └── SummaryTotalsSection.tsx
-│   │   ├── features/            # Feature slices and thunks
-│   │   │   ├── addons/          # Add-ons state slice and UI
-│   │   │   ├── estimates/       # Estimates modal and persistence slice
-│   │   │   ├── meals/           # Meals state slice and UI
-│   │   │   ├── rooms/           # Rooms state slice and UI
-│   │   │   └── thunks.ts        # Async action dispatchers
-│   │   ├── pages/               # Page layouts
-│   │   │   └── PlannerPage.tsx
-│   │   ├── services/            # API client layer
-│   │   │   └── api.ts
-│   │   ├── store/               # Redux store configuration and selectors
-│   │   │   ├── index.ts
-│   │   │   └── selectors.ts
-│   │   ├── styles/              # Design system tokens and styles
-│   │   │   ├── animations.css
-│   │   │   ├── components.css
-│   │   │   ├── index.css
-│   │   │   ├── responsive.css
-│   │   │   ├── typography.css
-│   │   │   └── variables.css
-│   │   ├── types/               # TypeScript domain interfaces
-│   │   │   └── index.ts
-│   │   ├── utils/               # Calculation verification helpers
-│   │   │   └── calculations.ts
-│   │   ├── App.tsx
-│   │   ├── main.tsx
-│   │   └── vite-env.d.ts
-│   ├── index.html
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── tsconfig.app.json
-│   ├── tsconfig.node.json
-│   └── vite.config.ts
-├── backend/
-│   ├── Api/                     # Minimal API Endpoints and Hosting
-│   │   ├── Common/Extensions/   # Result to ProblemDetails extensions
-│   │   ├── Features/            # Endpoint route mappings by feature
-│   │   │   ├── AddOns/
-│   │   │   ├── Estimates/
-│   │   │   ├── Events/
-│   │   │   ├── Meals/
-│   │   │   └── Rooms/
-│   │   ├── Properties/launchSettings.json
-│   │   ├── appsettings.json
-│   │   ├── appsettings.Development.json
-│   │   └── Program.cs           # DI registration, CORS, OpenAPI, Seeding
-│   ├── Application/             # Vertical Slices: CQRS & FluentValidation
-│   │   ├── Abstractions/        # Data and Messaging interfaces
-│   │   └── Features/
-│   │       ├── AddOns/          # GetAllAddOns, GetAddOnByCode
-│   │       ├── Estimates/       # CalculateEstimate, CreateEstimate, GetAll, GetById
-│   │       ├── Events/          # Create, GetAll, GetById, Update, Delete
-│   │       ├── Meals/           # GetAllMeals, GetMealByCode
-│   │       └── Rooms/           # GetAllRooms, GetRoomByCode
-│   ├── Domain/                  # Core entities and Result pattern
-│   │   ├── Common/              # BaseEntity, Result<T>, Error
-│   │   └── Entities/            # ConferenceEvent, RoomOption, AddOnOption, MealOption, ExpenseEstimate, EstimateItem
-│   ├── Infrastructure/          # EF Core SQLite AppDbContext
-│   │   └── Persistence/
-│   ├── Tests/                   # Automated xUnit test suite
-│   │   ├── CatalogTests.cs
-│   │   ├── EstimateCalculationTests.cs
-│   │   ├── EstimatePersistenceTests.cs
-│   │   ├── TestDbContextFactory.cs
-│   │   └── ValidatorTests.cs
-│   ├── VerticalSlice.sln
-│   └── VerticalSlice.slnx
-├── run-backend.bat              # Quick launch script for Backend
-├── run-frontend.bat             # Quick launch script for Frontend
-├── README.md
-└── .gitignore
-```
-
----
-
-## 5. Local Setup and Execution
-
-### Prerequisites
-- **.NET 10 SDK** (verified with `dotnet --version`)
-- **Node.js (v18+)** and **npm** (verified with `node -v` and `npm.cmd -v`)
-
----
-
-### Starting the Backend (.NET 10 API)
-
-1. Open a terminal and navigate to the backend API project:
-   ```bash
-   cd backend/Api
-   dotnet run --launch-profile http
-   ```
-2. The backend server will initialize:
-   - **Base URL**: `http://localhost:5000`
-   - **Interactive API Documentation (Scalar)**: `http://localhost:5000/scalar/v1`
-   - **OpenAPI Schema**: `http://localhost:5000/openapi/v1.json`
-   - **Catalog API**: `http://localhost:5000/api/catalog`
-   - **SQLite Database**: Automatically created and seeded as `conference_planner.db`.
-
-*(Alternatively, double-click `run-backend.bat` in Windows Explorer).*
-
----
-
-### Starting the Frontend (React + Vite)
-
-1. Open a separate terminal and navigate to the `frontend` folder:
-   ```bash
-   cd frontend
-   npm.cmd install
-   npm.cmd run dev
-   ```
-2. Open your browser and navigate to:
-   - **Frontend URL**: `http://localhost:5173`
-
-*(Alternatively, double-click `run-frontend.bat` in Windows Explorer).*
-
----
-
-## 6. API Endpoints Reference
-
-| HTTP Method | Route | Description |
-| :--- | :--- | :--- |
-| `GET` | `/` | API Health and info endpoint |
-| `GET` | `/api/catalog` | Consolidated catalog (Rooms, Add-ons, Meals) |
-| `GET` | `/api/rooms` | Retrieve all 5 venue room options |
-| `GET` | `/api/rooms/{code}` | Retrieve room by code (e.g. `auditorium-hall`) |
-| `GET` | `/api/addons` | Retrieve all 5 AV equipment options |
-| `GET` | `/api/addons/{code}` | Retrieve add-on by code (e.g. `projectors`) |
-| `GET` | `/api/meals` | Retrieve all 4 catering meal options |
-| `GET` | `/api/meals/{code}` | Retrieve meal by code (e.g. `breakfast`) |
-| `GET` | `/api/events` | List all conference events |
-| `GET` | `/api/events/{id}` | Retrieve conference event by ID |
-| `POST` | `/api/events` | Create a new conference event |
-| `PUT` | `/api/events/{id}` | Update an existing event |
-| `DELETE` | `/api/events/{id}` | Delete a conference event |
-| `POST` | `/api/estimates/calculate` | Compute authoritative estimate without saving |
-| `POST` | `/api/estimates` | Save customized estimate to SQLite database |
-| `GET` | `/api/estimates` | List all saved estimates from database |
-| `GET` | `/api/estimates/{id}` | Retrieve saved estimate by ID |
-
----
-
-## 7. Automated Testing & Verification
-
-### Running Backend Tests
-Execute the xUnit automated test suite:
-```bash
-dotnet test backend/Tests/Tests.csproj
-```
-**Test Coverage Includes:**
-- `CatalogTests`: Validates pricing, capacities, and display orders for all 5 rooms, 5 equipment items, and 4 meals.
-- `EstimateCalculationTests`: Validates exact arithmetic match for PDF examples, live subtotal computation, and exclusion of zero quantities.
-- `EstimatePersistenceTests`: Tests saving quotes to the database and re-reading them through the query handlers.
-- `ValidatorTests`: Verifies FluentValidation rules for attendee bounds, date constraints, and non-negative counts.
-
-### Building Frontend for Production
-Verify TypeScript compilation and asset bundling:
-```bash
-cd frontend
-npm.cmd run build
-```
-Build output is generated cleanly into `dist/` with zero TypeScript errors.
-
----
-
-## 8. Git Commit Log (Exactly 23 Commits)
-
-This repository follows a strictly curated 23-commit history under the identity:
-- **Username**: `edmagineva3d`
-- **Email**: `edmagineva11@gmail.com`
+## 📂 Project Structure
 
 ```text
-1.  chore: initialize repository and workspace structure for FinalProject-Edma
-2.  feat(backend): setup Vertical Slice solution structure and base architecture
-3.  feat(backend): implement domain entities for conference planner and catalog
-4.  feat(backend): configure EF Core SQLite persistence and database context
-5.  feat(backend): implement Rooms feature with queries and minimal API endpoints
-6.  feat(backend): implement AddOns feature with queries and minimal API endpoints
-7.  feat(backend): implement Meals feature with queries and minimal API endpoints
-8.  feat(backend): implement Events feature with CRUD commands, queries, and validation
-9.  feat(backend): implement Estimates calculation, validation, and persistence features
-10. test(backend): add automated unit and integration tests for catalog, calculations, and estimates
-11. feat(backend): configure CORS, seed catalog data, and enable OpenAPI Scalar documentation
-12. chore(frontend): initialize React TypeScript Vite application and install dependencies
-13. style(frontend): define pastel retro design system, theme tokens, and typography
-14. feat(frontend): configure Redux Toolkit store, typed hooks, and domain slices
-15. feat(frontend): implement API service layer for backend communication with error handling
-16. feat(frontend): create responsive landing page with brand hero, features, and CTA
-17. feat(frontend): implement venue room selection component with dynamic subtotal pricing
-18. feat(frontend): implement add-ons equipment selection component with quantity controls
-19. feat(frontend): implement meals catering selection component with guest count validation
-20. feat(frontend): implement Show Details four-column expense summary modal and estimate persistence
-21. feat(frontend): implement saved estimates history viewer and seamless backend integration
-22. test(frontend): verify responsive layouts, validation states, and end-to-end user workflows
-23. docs: add comprehensive README documentation, run scripts, and final project packaging
+FinalProject-Edma/
+│
+├── frontend/
+│   └── src/
+│       ├── components/
+│       │   ├── Navbar.tsx
+│       │   ├── SummaryTotalsSection.tsx
+│       │   ├── CartDrawer.tsx
+│       │   ├── CheckoutModal.tsx
+│       │   ├── BookingConfirmationModal.tsx
+│       │   └── BookingsHistoryDrawer.tsx
+│       │
+│       ├── features/
+│       │   ├── addons/
+│       │   ├── meals/
+│       │   ├── rooms/
+│       │   └── cart/
+│       │
+│       ├── pages/
+│       ├── services/
+│       ├── store/
+│       ├── styles/
+│       └── types/
+│
+├── backend/
+│   ├── Api/
+│   │   └── Features/
+│   ├── Application/
+│   │   ├── Abstractions/
+│   │   └── Features/
+│   ├── Domain/
+│   │   └── Entities/
+│   ├── Infrastructure/
+│   │   └── Persistence/
+│   └── Tests/
+│
+├── screenshots/
+│   ├── SS 1.png
+│   ├── SS 2.png
+│   ├── SS 3.png
+│   ├── SS 4.png
+│   ├── SS 5.png
+│   └── SS 6.png
+│
+└── README.md
 ```
 
 ---
 
-## 9. Deliverable Verification Checklist
+## 🚀 Installation and Setup
 
-- [x] **Frontend Design Excellence**: Recreated aesthetic of the reference image with pastel hues, scalloped borders, checkered ribbons, and squishy tactile controls.
-- [x] **Complete Functionality**: Increment/decrement controls, real-time math, dynamic Redux state, modal popups, and database persistence are fully operational.
-- [x] **Clean Vertical Slice Backend**: Removed all unrelated Student Management code and implemented clean Conference Planner feature slices.
-- [x] **Persistence Verified**: Estimates persist to SQLite (`conference_planner.db`) and are viewable in the Saved Quotes drawer.
-- [x] **Automated Tests**: 100% pass rate on backend unit and calculation tests.
-- [x] **Git Identity & Commit Count**: Configured with `edmagineva3d` and exactly 23 commits.
-- [x] **ZIP Deliverable**: Packaged as `FinalProject-Edma.zip`.
+### Prerequisites
 
+Make sure the following tools are installed:
+
+- Node.js and npm
+- .NET 10 SDK
+- Git
+- Visual Studio Code or another compatible code editor
+
+### 1. Clone the Repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd FinalProject-Edma
+```
+
+### 2. Run the Backend
+
+Open a terminal and navigate to the backend folder:
+
+```powershell
+cd backend
+```
+
+Restore dependencies:
+
+```powershell
+dotnet restore .\Api\Api.csproj
+```
+
+Build the backend:
+
+```powershell
+dotnet build .\Api\Api.csproj
+```
+
+Run the backend API:
+
+```powershell
+dotnet run --project .\Api\Api.csproj
+```
+
+Keep this terminal running.
+
+### 3. Run the Frontend
+
+Open another terminal and navigate to the frontend folder:
+
+```bash
+cd frontend
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the frontend development server:
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed in the terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 🔌 Backend API Endpoints
+
+The following endpoints are part of the API functionality demonstrated in the project.
+
+| HTTP Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/catalog` | Retrieves available catalog information. |
+| POST | `/api/cart/validate` | Validates cart selections and processes cost calculations. |
+| POST | `/api/bookings` | Creates a new conference booking. |
+| GET | `/api/bookings` | Retrieves saved booking records. |
+
+Additional estimate-related API requests are also shown in the frontend Network tab. Refer to the actual Scalar documentation for the complete endpoint list.
+
+---
+
+## 🧪 Testing and Verification
+
+The application can be tested by following these steps:
+
+1. Start the ASP.NET Core backend.
+2. Start the React frontend.
+3. Open the application in a browser.
+4. Test venue, room, add-on, and meal selections.
+5. Review the cart and estimated total.
+6. Proceed through the checkout process.
+7. Submit a booking.
+8. Check the booking confirmation.
+9. Inspect the Network tab in Developer Tools.
+10. Verify the HTTP status codes returned by the backend.
+
+Successful API responses and booking operations provide evidence that the frontend and backend are communicating.
+
+---
+
+## 🎓 Academic Project Information
+
+| Information | Details |
+|---|---|
+| Project Name | Gather & Co. – Conference Event Planner |
+| Repository | FinalProject-Edma |
+| Frontend Subject | Systems Integration and Architecture (SIA) |
+| Backend Subject | Integrative Programming 2 (IP2) |
+| Frontend Framework | React with TypeScript |
+| Backend Framework | ASP.NET Core |
+| Database | SQLite |
+
+---
+
+<div align="center">
+
+**Conference Event Planner**
+
+*Making conference event planning easier through an integrated frontend and backend application.*
+
+**Developed by:** Gineva D. Edma
+
+**Course:** BS Information Technology 
+**Section:** BSIT 3D
+
+</div>
