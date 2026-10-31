@@ -1,0 +1,84 @@
+/* Responsive Layout Refinements */
+
+@media (max-width: 1024px) {
+  :root {
+    --max-content-width: 920px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --radius-lg: 20px;
+    --radius-md: 16px;
+  }
+
+  .canvas-wrapper {
+    border-radius: var(--radius-lg);
+  }
+
+  .navbar-container {
+    padding: 0.75rem 1rem !important;
+  }
+
+  .display-title {
+    font-size: 2.4rem;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .section-total-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .section-total-amount {
+    font-size: 1.4rem;
+  }
+
+  .squishy-card {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-frame {
+    padding: 4px;
+  }
+
+  .navbar-container {
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  .btn-squishy {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .pill-dashed {
+    font-size: 0.85rem;
+    padding: 0.45rem 1rem;
+  }
+
+  .qty-controller {
+    gap: 0.4rem;
+  }
+
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+
+  .section-total-amount {
+    font-size: 1.3rem;
+  }
+}

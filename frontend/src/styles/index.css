@@ -2,6 +2,7 @@
 @import './typography.css';
 @import './components.css';
 @import './animations.css';
+@import './responsive.css';
 
 * {
   box-sizing: border-box;
