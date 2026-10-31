@@ -1,0 +1,51 @@
+:root {
+  /* Brand Pastel & Bold Contrast Palette (Inspired by Reference Design) */
+  --color-outer-pink: #F8B4D9;
+  --color-pastel-pink: #FFD4EC;
+  --color-blush: #FFE4F2;
+  --color-cobalt: #1636B0;
+  --color-cobalt-light: #254BC8;
+  --color-cobalt-dark: #0E2480;
+  
+  --color-cream-bg: #FFFDF5;
+  --color-cream-warm: #FFF9E8;
+  --color-butter-yellow: #FEF08A;
+  --color-butter-yellow-light: #FEF9C3;
+  
+  --color-lavender: #DDD6FE;
+  --color-lavender-light: #EDE9FE;
+  --color-lavender-dark: #7C3AED;
+  
+  --color-sky-blue: #BAE6FD;
+  --color-sky-blue-light: #E0F2FE;
+  
+  --color-mint: #BBF7D0;
+  --color-mint-light: #DCFCE7;
+
+  --color-text-dark: #1E293B;
+  --color-text-muted: #64748B;
+  --color-text-light: #94A3B8;
+  --color-border-soft: rgba(22, 54, 176, 0.15);
+  --color-border-bold: #1636B0;
+
+  /* Typography */
+  --font-display: 'Fredoka', 'Comfortaa', cursive, sans-serif;
+  --font-body: 'Quicksand', system-ui, -apple-system, sans-serif;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 4px rgba(22, 54, 176, 0.06);
+  --shadow-md: 0 6px 16px rgba(22, 54, 176, 0.08);
+  --shadow-lg: 0 12px 28px rgba(22, 54, 176, 0.12);
+  --shadow-squishy: 0 6px 0 var(--color-cobalt);
+  --shadow-squishy-hover: 0 8px 0 var(--color-cobalt);
+  --shadow-squishy-active: 0 2px 0 var(--color-cobalt);
+
+  /* Radii */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-pill: 9999px;
+
+  /* Spacing */
+  --max-content-width: 1200px;
+}

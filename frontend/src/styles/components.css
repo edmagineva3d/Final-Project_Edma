@@ -1,0 +1,230 @@
+/* Outer Framing Container Matching Reference */
+.app-frame {
+  min-height: 100vh;
+  background-color: var(--color-outer-pink);
+  padding: 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .app-frame {
+    padding: 8px;
+  }
+}
+
+.canvas-wrapper {
+  background-color: var(--color-cream-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(22, 54, 176, 0.15);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Checkered Ribbon Banner */
+.checkered-ribbon {
+  height: 22px;
+  width: 100%;
+  background-image: repeating-conic-gradient(var(--color-cobalt) 0% 25%, var(--color-outer-pink) 0% 50%);
+  background-size: 24px 24px;
+}
+
+/* Wavy Marquee Ribbon */
+.wavy-marquee-wrapper {
+  background-color: var(--color-cream-bg);
+  position: relative;
+  overflow: hidden;
+  padding: 12px 0 8px;
+  border-top: 2px dashed rgba(22, 54, 176, 0.2);
+  border-bottom: 2px dashed rgba(22, 54, 176, 0.2);
+}
+
+.wavy-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  gap: 2rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-cobalt);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Dashed Pill Stitch Button / Badge */
+.pill-dashed {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.4rem;
+  border: 2px dashed var(--color-cobalt);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-pastel-pink);
+  color: var(--color-cobalt);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pill-dashed:hover {
+  background-color: #ffbfe0;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.pill-dashed:active {
+  transform: translateY(1px);
+}
+
+/* Squishy Tactile Button */
+.btn-squishy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  background-color: var(--color-cobalt);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: 2.5px solid var(--color-cobalt-dark);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: 0 5px 0 var(--color-cobalt-dark);
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+}
+
+.btn-squishy:hover {
+  background-color: var(--color-cobalt-light);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--color-cobalt-dark);
+}
+
+.btn-squishy:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--color-cobalt-dark);
+}
+
+.btn-squishy-secondary {
+  background-color: var(--color-butter-yellow);
+  color: var(--color-cobalt);
+  border-color: var(--color-cobalt);
+  box-shadow: 0 5px 0 var(--color-cobalt);
+}
+
+.btn-squishy-secondary:hover {
+  background-color: #fef08a;
+  box-shadow: 0 7px 0 var(--color-cobalt);
+}
+
+.btn-squishy-secondary:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--color-cobalt);
+}
+
+/* Squishy Card System */
+.squishy-card {
+  background-color: #fff;
+  border-radius: var(--radius-md);
+  border: 2.5px solid var(--color-border-bold);
+  box-shadow: 0 8px 0 rgba(22, 54, 176, 0.15);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.squishy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 0 rgba(22, 54, 176, 0.2);
+}
+
+/* Tactile Quantity Controls */
+.qty-controller {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--color-cream-warm);
+  border: 2px solid var(--color-cobalt);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+}
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-cobalt);
+  background-color: var(--color-butter-yellow);
+  color: var(--color-cobalt);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 0 var(--color-cobalt);
+  transition: all 0.12s ease;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background-color: #fde047;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 0 var(--color-cobalt);
+}
+
+.qty-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--color-cobalt);
+}
+
+.qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.qty-value {
+  min-width: 32px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-cobalt);
+}
+
+/* Section Summary Pill */
+.section-total-bar {
+  margin-top: 1.75rem;
+  padding: 1rem 1.75rem;
+  background-color: var(--color-butter-yellow-light);
+  border: 2.5px dashed var(--color-cobalt);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(22, 54, 176, 0.08);
+}
+
+.section-total-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-cobalt);
+}
+
+.section-total-amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--color-cobalt);
+}
