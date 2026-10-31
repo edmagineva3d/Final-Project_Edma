@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { incrementRoom, decrementRoom } from './roomsSlice';
+import { addToCart } from '../cart/cartSlice';
 import { selectRoomsTotal } from '../../store/selectors';
 import { QuantityControl } from '../../components/QuantityControl';
 import { StarFlowerIcon } from '../../components/DecorativeAssets';
-import { Users, Building2 } from 'lucide-react';
+import { Users, Building2, ShoppingCart } from 'lucide-react';
 import { RoomOption } from '../../types';
 
 export const VenueRoomSelection: React.FC = () => {
@@ -12,6 +13,26 @@ export const VenueRoomSelection: React.FC = () => {
   const rooms = useAppSelector((state) => state.rooms.items);
   const quantities = useAppSelector((state) => state.rooms.quantities);
   const roomsTotal = useAppSelector(selectRoomsTotal);
+  const [addedCode, setAddedCode] = useState<string | null>(null);
+
+  const handleAddToCart = (room: RoomOption, currentQty: number) => {
+    const qtyToAdd = currentQty > 0 ? currentQty : 1;
+    if (currentQty === 0) {
+      dispatch(incrementRoom(room.code));
+    }
+    dispatch(
+      addToCart({
+        category: 'Room',
+        code: room.code,
+        name: room.name,
+        unitPrice: room.unitPrice,
+        quantity: qtyToAdd,
+        imageUrl: room.imageUrl || getRoomPhoto(room.code),
+      })
+    );
+    setAddedCode(room.code);
+    setTimeout(() => setAddedCode(null), 1800);
+  };
 
   // High-resolution real photographs
   const getRoomPhoto = (code: string, fallback?: string): string => {
@@ -234,6 +255,7 @@ export const VenueRoomSelection: React.FC = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
+                        marginBottom: '0.75rem',
                       }}
                     >
                       <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-muted)' }}>
@@ -250,6 +272,16 @@ export const VenueRoomSelection: React.FC = () => {
                         ${subtotal.toLocaleString()}
                       </span>
                     </div>
+
+                    {/* Add to Cart Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(room, qty)}
+                      className={`btn-add-cart ${addedCode === room.code ? 'added' : ''}`}
+                    >
+                      <ShoppingCart size={15} />
+                      <span>{addedCode === room.code ? 'Added to Cart ✓' : 'Add to Cart'}</span>
+                    </button>
                   </div>
                 </div>
               </div>

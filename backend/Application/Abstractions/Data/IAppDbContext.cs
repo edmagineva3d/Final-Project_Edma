@@ -11,7 +11,8 @@ public interface IAppDbContext
     DbSet<MealOption> Meals { get; }
     DbSet<ExpenseEstimate> Estimates { get; }
     DbSet<EstimateItem> EstimateItems { get; }
+    DbSet<Booking> Bookings { get; }
+    DbSet<BookingItem> BookingItems { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
-

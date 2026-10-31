@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { incrementAddOn, decrementAddOn } from './addonsSlice';
+import { addToCart } from '../cart/cartSlice';
 import { selectAddOnsTotal } from '../../store/selectors';
 import { QuantityControl } from '../../components/QuantityControl';
 import { StarFlowerIcon } from '../../components/DecorativeAssets';
-import { Sparkles, Sliders } from 'lucide-react';
+import { Sparkles, Sliders, ShoppingCart } from 'lucide-react';
 import { AddOnOption } from '../../types';
 
 export const AddonsSelection: React.FC = () => {
@@ -12,6 +13,26 @@ export const AddonsSelection: React.FC = () => {
   const addons = useAppSelector((state) => state.addons.items);
   const quantities = useAppSelector((state) => state.addons.quantities);
   const addonsTotal = useAppSelector(selectAddOnsTotal);
+  const [addedCode, setAddedCode] = useState<string | null>(null);
+
+  const handleAddToCart = (addon: AddOnOption, currentQty: number) => {
+    const qtyToAdd = currentQty > 0 ? currentQty : 1;
+    if (currentQty === 0) {
+      dispatch(incrementAddOn(addon.code));
+    }
+    dispatch(
+      addToCart({
+        category: 'AddOn',
+        code: addon.code,
+        name: addon.name,
+        unitPrice: addon.unitPrice,
+        quantity: qtyToAdd,
+        imageUrl: addon.imageUrl || getAddOnPhoto(addon.code),
+      })
+    );
+    setAddedCode(addon.code);
+    setTimeout(() => setAddedCode(null), 1800);
+  };
 
   const getAddOnPhoto = (code: string, fallback?: string): string => {
     if (fallback) return fallback;
@@ -233,6 +254,7 @@ export const AddonsSelection: React.FC = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
+                        marginBottom: '0.75rem',
                       }}
                     >
                       <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-muted)' }}>
@@ -249,6 +271,16 @@ export const AddonsSelection: React.FC = () => {
                         ${subtotal.toLocaleString()}
                       </span>
                     </div>
+
+                    {/* Add to Cart Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(addon, qty)}
+                      className={`btn-add-cart ${addedCode === addon.code ? 'added' : ''}`}
+                    >
+                      <ShoppingCart size={15} />
+                      <span>{addedCode === addon.code ? 'Added to Cart ✓' : 'Add to Cart'}</span>
+                    </button>
                   </div>
                 </div>
               </div>

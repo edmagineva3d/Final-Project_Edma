@@ -14,6 +14,8 @@ public sealed class AppDbContext : DbContext, IAppDbContext
     public DbSet<MealOption> Meals => Set<MealOption>();
     public DbSet<ExpenseEstimate> Estimates => Set<ExpenseEstimate>();
     public DbSet<EstimateItem> EstimateItems => Set<EstimateItem>();
+    public DbSet<Booking> Bookings => Set<Booking>();
+    public DbSet<BookingItem> BookingItems => Set<BookingItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -85,6 +87,38 @@ public sealed class AppDbContext : DbContext, IAppDbContext
             entity.Property(i => i.UnitCost).HasColumnType("decimal(18,2)");
             entity.Property(i => i.Subtotal).HasColumnType("decimal(18,2)");
         });
+
+        modelBuilder.Entity<Booking>(entity =>
+        {
+            entity.HasKey(b => b.Id);
+            entity.Property(b => b.BookingReference).IsRequired().HasMaxLength(50);
+            entity.HasIndex(b => b.BookingReference).IsUnique();
+            entity.Property(b => b.ClientName).IsRequired().HasMaxLength(150);
+            entity.Property(b => b.ClientEmail).IsRequired().HasMaxLength(200);
+            entity.Property(b => b.ClientPhone).HasMaxLength(50);
+            entity.Property(b => b.Organization).HasMaxLength(150);
+            entity.Property(b => b.EventName).IsRequired().HasMaxLength(200);
+            entity.Property(b => b.Status).IsRequired().HasMaxLength(50);
+            entity.Property(b => b.RoomsTotal).HasColumnType("decimal(18,2)");
+            entity.Property(b => b.AddOnsTotal).HasColumnType("decimal(18,2)");
+            entity.Property(b => b.MealsTotal).HasColumnType("decimal(18,2)");
+            entity.Property(b => b.GrandTotal).HasColumnType("decimal(18,2)");
+
+            entity.HasMany(b => b.Items)
+                  .WithOne(i => i.Booking)
+                  .HasForeignKey(i => i.BookingId)
+                  .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<BookingItem>(entity =>
+        {
+            entity.HasKey(i => i.Id);
+            entity.Property(i => i.Category).IsRequired().HasMaxLength(50);
+            entity.Property(i => i.ItemCode).IsRequired().HasMaxLength(50);
+            entity.Property(i => i.ItemName).IsRequired().HasMaxLength(150);
+            entity.Property(i => i.UnitCost).HasColumnType("decimal(18,2)");
+            entity.Property(i => i.Subtotal).HasColumnType("decimal(18,2)");
+            entity.Property(i => i.ImageUrl).HasMaxLength(500);
+        });
     }
 }
-

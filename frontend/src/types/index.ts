@@ -75,3 +75,74 @@ export interface CreateEstimatePayload {
   meals: Array<{ code: string; numberOfPeople: number }>;
   notes?: string;
 }
+
+// Shopping Cart & Booking Types
+export interface CartItem {
+  id: string; // Composite key e.g. "Room-conference-room"
+  category: 'Room' | 'AddOn' | 'Meal';
+  code: string;
+  name: string;
+  unitPrice: number;
+  quantity: number;
+  attendeeCount?: number;
+  imageUrl?: string;
+  subtotal: number;
+}
+
+export interface BookingItem {
+  id: string;
+  category: 'Room' | 'AddOn' | 'Meal' | string;
+  itemCode: string;
+  itemName: string;
+  unitCost: number;
+  quantity: number;
+  subtotal: number;
+  imageUrl?: string;
+}
+
+export interface Booking {
+  id: string;
+  bookingReference: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone?: string;
+  organization?: string;
+  eventName: string;
+  eventDate: string;
+  numberOfAttendees: number;
+  status: string;
+  roomsTotal: number;
+  addOnsTotal: number;
+  mealsTotal: number;
+  grandTotal: number;
+  specialRequests?: string;
+  createdAt: string;
+  confirmedAt?: string;
+  items: BookingItem[];
+}
+
+export interface CreateBookingPayload {
+  clientName: string;
+  clientEmail: string;
+  clientPhone?: string;
+  organization?: string;
+  eventName: string;
+  eventDate?: string;
+  numberOfAttendees: number;
+  specialRequests?: string;
+  items: Array<{
+    category: string;
+    itemCode: string;
+    quantity: number;
+    numberOfPeople?: number;
+  }>;
+}
+
+export interface CartSummaryResponse {
+  items: BookingItem[];
+  roomsTotal: number;
+  addOnsTotal: number;
+  mealsTotal: number;
+  grandTotal: number;
+  totalItemCount: number;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from '../hooks';
 import { loadCatalogThunk, loadSavedEstimatesThunk } from '../features/thunks';
+import { fetchBookingsThunk } from '../features/cart/cartSlice';
 import { Navbar } from '../components/Navbar';
 import { HeroSection } from '../components/HeroSection';
 import { VenueRoomSelection } from '../features/rooms/VenueRoomSelection';
@@ -9,6 +10,10 @@ import { MealsSelection } from '../features/meals/MealsSelection';
 import { SummaryTotalsSection } from '../components/SummaryTotalsSection';
 import { ShowDetailsModal } from '../components/ShowDetailsModal';
 import { SavedQuotesDrawer } from '../components/SavedQuotesDrawer';
+import { CartDrawer } from '../components/CartDrawer';
+import { CheckoutModal } from '../components/CheckoutModal';
+import { BookingConfirmationModal } from '../components/BookingConfirmationModal';
+import { BookingsHistoryDrawer } from '../components/BookingsHistoryDrawer';
 import { Footer } from '../components/Footer';
 
 export const PlannerPage: React.FC = () => {
@@ -19,6 +24,8 @@ export const PlannerPage: React.FC = () => {
     dispatch(loadCatalogThunk());
     // Fetch previously saved estimates from database on mount
     dispatch(loadSavedEstimatesThunk());
+    // Fetch previously saved bookings from database on mount
+    dispatch(fetchBookingsThunk());
   }, [dispatch]);
 
   const handleScrollToSection = (sectionId: string) => {
@@ -46,6 +53,10 @@ export const PlannerPage: React.FC = () => {
         {/* Global Modals & Drawers */}
         <ShowDetailsModal />
         <SavedQuotesDrawer />
+        <CartDrawer />
+        <CheckoutModal />
+        <BookingConfirmationModal />
+        <BookingsHistoryDrawer />
       </div>
     </div>
   );

@@ -5,6 +5,9 @@ import {
   RoomOption,
   AddOnOption,
   MealOption,
+  Booking,
+  CreateBookingPayload,
+  CartSummaryResponse,
 } from '../types';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
@@ -96,6 +99,44 @@ export const api = {
   async getEstimateById(id: string): Promise<ExpenseEstimate> {
     const res = await fetch(`${API_BASE}/estimates/${id}`);
     return handleResponse<ExpenseEstimate>(res);
+  },
+
+  // Confirm and persist a conference booking
+  async createBooking(payload: CreateBookingPayload): Promise<Booking> {
+    const res = await fetch(`${API_BASE}/bookings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return handleResponse<Booking>(res);
+  },
+
+  // Retrieve all saved bookings
+  async getBookings(): Promise<Booking[]> {
+    const res = await fetch(`${API_BASE}/bookings`);
+    return handleResponse<Booking[]>(res);
+  },
+
+  // Retrieve booking by ID
+  async getBookingById(id: string): Promise<Booking> {
+    const res = await fetch(`${API_BASE}/bookings/${id}`);
+    return handleResponse<Booking>(res);
+  },
+
+  // Retrieve booking by Reference
+  async getBookingByReference(ref: string): Promise<Booking> {
+    const res = await fetch(`${API_BASE}/bookings/reference/${encodeURIComponent(ref)}`);
+    return handleResponse<Booking>(res);
+  },
+
+  // Server-side Cart validation
+  async validateCart(items: Array<{ category: string; itemCode: string; quantity: number; numberOfPeople?: number }>, defaultAttendeeCount?: number): Promise<CartSummaryResponse> {
+    const res = await fetch(`${API_BASE}/cart/validate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items, defaultAttendeeCount }),
+    });
+    return handleResponse<CartSummaryResponse>(res);
   },
 };
 

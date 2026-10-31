@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   toggleMeal,
+  setMealSelected,
   setMealPeople,
   setDefaultAttendees,
 } from './mealsSlice';
+import { addToCart } from '../cart/cartSlice';
 import { selectMealsTotal } from '../../store/selectors';
 import { StarFlowerIcon } from '../../components/DecorativeAssets';
-import { Utensils, Users, Check, AlertCircle } from 'lucide-react';
+import { Utensils, Users, Check, AlertCircle, ShoppingCart } from 'lucide-react';
 import { MealOption } from '../../types';
 
 export const MealsSelection: React.FC = () => {
@@ -16,6 +18,28 @@ export const MealsSelection: React.FC = () => {
   const selections = useAppSelector((state) => state.meals.selections);
   const defaultAttendees = useAppSelector((state) => state.meals.defaultAttendees);
   const mealsTotal = useAppSelector(selectMealsTotal);
+  const [addedCode, setAddedCode] = useState<string | null>(null);
+
+  const handleAddToCart = (meal: MealOption, sel: { selected: boolean; numberOfPeople: number }) => {
+    const people = sel.selected && sel.numberOfPeople > 0 ? sel.numberOfPeople : defaultAttendees > 0 ? defaultAttendees : 1;
+    if (!sel.selected) {
+      dispatch(setMealSelected({ code: meal.code, selected: true }));
+      dispatch(setMealPeople({ code: meal.code, numberOfPeople: people }));
+    }
+    dispatch(
+      addToCart({
+        category: 'Meal',
+        code: meal.code,
+        name: `${meal.name} Catering`,
+        unitPrice: meal.pricePerPerson,
+        quantity: people,
+        attendeeCount: people,
+        imageUrl: meal.imageUrl || getMealPhoto(meal.code),
+      })
+    );
+    setAddedCode(meal.code);
+    setTimeout(() => setAddedCode(null), 1800);
+  };
 
   const getMealPhoto = (code: string, fallback?: string): string => {
     if (fallback) return fallback;
@@ -356,6 +380,7 @@ export const MealsSelection: React.FC = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
+                        marginBottom: '0.75rem',
                       }}
                     >
                       <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-muted)' }}>
@@ -372,6 +397,16 @@ export const MealsSelection: React.FC = () => {
                         ${subtotal.toLocaleString()}
                       </span>
                     </div>
+
+                    {/* Add to Cart Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(meal, sel)}
+                      className={`btn-add-cart ${addedCode === meal.code ? 'added' : ''}`}
+                    >
+                      <ShoppingCart size={15} />
+                      <span>{addedCode === meal.code ? 'Added to Cart ✓' : 'Add to Cart'}</span>
+                    </button>
                   </div>
                 </div>
               </div>

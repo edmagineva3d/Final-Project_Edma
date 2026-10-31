@@ -1,5 +1,6 @@
 using Api.Common.Extensions;
 using Api.Features.AddOns;
+using Api.Features.Bookings;
 using Api.Features.Estimates;
 using Api.Features.Events;
 using Api.Features.Meals;
@@ -8,6 +9,13 @@ using Application.Abstractions.Data;
 using Application.Abstractions.Messaging;
 using Application.Features.AddOns.GetAddOnByCode;
 using Application.Features.AddOns.GetAllAddOns;
+using Application.Features.Bookings.CreateBooking;
+using Application.Features.Bookings.DTOs;
+using Application.Features.Bookings.GetAllBookings;
+using Application.Features.Bookings.GetBookingById;
+using Application.Features.Bookings.GetBookingByReference;
+using Application.Features.Bookings.UpdateBookingStatus;
+using Application.Features.Bookings.ValidateCart;
 using Application.Features.Estimates.CalculateEstimate;
 using Application.Features.Estimates.CreateEstimate;
 using Application.Features.Estimates.GetAllEstimates;
@@ -65,6 +73,14 @@ builder.Services.AddScoped<ICommandHandler<CalculateEstimateCommand, Result<Esti
 builder.Services.AddScoped<ICommandHandler<CreateEstimateCommand, Result<EstimateDto>>, CreateEstimateCommandHandler>();
 builder.Services.AddScoped<IQueryHandler<GetAllEstimatesQuery, Result<List<EstimateDto>>>, GetAllEstimatesQueryHandler>();
 builder.Services.AddScoped<IQueryHandler<GetEstimateByIdQuery, Result<EstimateDto>>, GetEstimateByIdQueryHandler>();
+
+// Bookings & Cart
+builder.Services.AddScoped<ICommandHandler<CreateBookingCommand, Result<BookingDto>>, CreateBookingCommandHandler>();
+builder.Services.AddScoped<IQueryHandler<GetAllBookingsQuery, Result<List<BookingDto>>>, GetAllBookingsQueryHandler>();
+builder.Services.AddScoped<IQueryHandler<GetBookingByIdQuery, Result<BookingDto>>, GetBookingByIdQueryHandler>();
+builder.Services.AddScoped<IQueryHandler<GetBookingByReferenceQuery, Result<BookingDto>>, GetBookingByReferenceQueryHandler>();
+builder.Services.AddScoped<ICommandHandler<UpdateBookingStatusCommand, Result<BookingDto>>, UpdateBookingStatusCommandHandler>();
+builder.Services.AddScoped<ICommandHandler<ValidateCartCommand, Result<CartSummaryDto>>, ValidateCartCommandHandler>();
 
 // CORS configuration for frontend
 const string frontendCorsPolicy = "FrontendCors";
@@ -370,6 +386,85 @@ using (var scope = app.Services.CreateScope())
             dbContext.SaveChanges();
         }
     }
+
+    // Seed sample confirmed booking if none exists
+    if (!dbContext.Bookings.Any())
+    {
+        var sampleBookingId = Guid.NewGuid();
+        var sampleBooking = new Booking
+        {
+            Id = sampleBookingId,
+            BookingReference = "GC-2610-8421",
+            ClientName = "Sarah Jenkins",
+            ClientEmail = "sarah.jenkins@lumina-tech.org",
+            ClientPhone = "+1 (555) 234-8901",
+            Organization = "Lumina Technologies",
+            EventName = "Q4 Annual Technology Keynote",
+            EventDate = DateTime.UtcNow.AddDays(21),
+            NumberOfAttendees = 45,
+            Status = "Confirmed",
+            RoomsTotal = 3500m,
+            AddOnsTotal = 280m,
+            MealsTotal = 2700m,
+            GrandTotal = 6480m,
+            SpecialRequests = "Please prepare HDMI/USB-C adaptors on podium and serve gluten-free alternatives for lunch.",
+            CreatedAt = DateTime.UtcNow.AddDays(-2),
+            ConfirmedAt = DateTime.UtcNow.AddDays(-2),
+            Items = new List<BookingItem>
+            {
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    BookingId = sampleBookingId,
+                    Category = "Room",
+                    ItemCode = "conference-room",
+                    ItemName = "Conference Room",
+                    UnitCost = 3500m,
+                    Quantity = 1,
+                    Subtotal = 3500m,
+                    ImageUrl = "/assets/images/room-conference.jpg"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    BookingId = sampleBookingId,
+                    Category = "AddOn",
+                    ItemCode = "projectors",
+                    ItemName = "Projectors",
+                    UnitCost = 200m,
+                    Quantity = 1,
+                    Subtotal = 200m,
+                    ImageUrl = "/assets/images/addon-projectors.jpg"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    BookingId = sampleBookingId,
+                    Category = "AddOn",
+                    ItemCode = "signage",
+                    ItemName = "Signage",
+                    UnitCost = 80m,
+                    Quantity = 1,
+                    Subtotal = 80m,
+                    ImageUrl = "/assets/images/addon-signage.jpg"
+                },
+                new()
+                {
+                    Id = Guid.NewGuid(),
+                    BookingId = sampleBookingId,
+                    Category = "Meal",
+                    ItemCode = "lunch",
+                    ItemName = "Lunch",
+                    UnitCost = 60m,
+                    Quantity = 45,
+                    Subtotal = 2700m,
+                    ImageUrl = "/assets/images/meal-lunch.jpg"
+                }
+            }
+        };
+        dbContext.Bookings.Add(sampleBooking);
+        dbContext.SaveChanges();
+    }
 }
 
 // Enable CORS
@@ -417,5 +512,6 @@ app.MapAddOnEndpoints();
 app.MapMealEndpoints();
 app.MapEventEndpoints();
 app.MapEstimateEndpoints();
+app.MapBookingEndpoints();
 
 app.Run();

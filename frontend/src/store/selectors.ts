@@ -126,3 +126,48 @@ export const selectTotalSelectedCount = createSelector(
   }
 );
 
+// Shopping Cart Selectors
+export const selectCartItems = (state: RootState) => state.cart.items;
+
+export const selectCartItemCount = createSelector(
+  [selectCartItems],
+  (items): number => items.reduce((sum, item) => sum + (item.category === 'Meal' ? 1 : item.quantity), 0)
+);
+
+export const selectCartRoomsTotal = createSelector(
+  [selectCartItems],
+  (items): number =>
+    items
+      .filter((i) => i.category === 'Room')
+      .reduce((sum, i) => sum + i.subtotal, 0)
+);
+
+export const selectCartAddOnsTotal = createSelector(
+  [selectCartItems],
+  (items): number =>
+    items
+      .filter((i) => i.category === 'AddOn')
+      .reduce((sum, i) => sum + i.subtotal, 0)
+);
+
+export const selectCartMealsTotal = createSelector(
+  [selectCartItems],
+  (items): number =>
+    items
+      .filter((i) => i.category === 'Meal')
+      .reduce((sum, i) => sum + i.subtotal, 0)
+);
+
+export const selectCartGrandTotal = createSelector(
+  [selectCartItems],
+  (items): number => items.reduce((sum, i) => sum + i.subtotal, 0)
+);
+
+export const selectIsCartOpen = (state: RootState) => state.cart.isOpen;
+export const selectIsCheckoutOpen = (state: RootState) => state.cart.isCheckoutOpen;
+export const selectIsBookingsDrawerOpen = (state: RootState) => state.cart.isBookingsDrawerOpen;
+export const selectConfirmedBooking = (state: RootState) => state.cart.confirmedBooking;
+export const selectBookingsHistory = (state: RootState) => state.cart.bookingsHistory;
+export const selectCartLoading = (state: RootState) => state.cart.loading;
+export const selectCartError = (state: RootState) => state.cart.error;
+

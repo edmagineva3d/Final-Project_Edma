@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { openDetailsModal } from '../features/estimates/estimatesSlice';
+import { openCart } from '../features/cart/cartSlice';
 import {
   selectRoomsTotal,
   selectAddOnsTotal,
@@ -9,7 +10,7 @@ import {
   selectTotalSelectedCount,
 } from '../store/selectors';
 import { StarFlowerIcon, WavyScallopDivider } from './DecorativeAssets';
-import { Calculator, ArrowRight, Building2, Sliders, Utensils } from 'lucide-react';
+import { Calculator, ArrowRight, Building2, Sliders, Utensils, ShoppingCart } from 'lucide-react';
 
 export const SummaryTotalsSection: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -280,15 +281,27 @@ export const SummaryTotalsSection: React.FC = () => {
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={() => dispatch(openDetailsModal())}
-            className="btn-squishy"
-            style={{ padding: '0.8rem 1.8rem', fontSize: '1.05rem' }}
-          >
-            <span>Show Itemized Details</span>
-            <ArrowRight size={18} />
-          </button>
+          <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={() => dispatch(openCart())}
+              className="btn-squishy btn-squishy-secondary"
+              style={{ padding: '0.8rem 1.6rem', fontSize: '1.05rem' }}
+            >
+              <ShoppingCart size={18} />
+              <span>Open Cart &amp; Checkout</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => dispatch(openDetailsModal())}
+              className="btn-squishy"
+              style={{ padding: '0.8rem 1.8rem', fontSize: '1.05rem' }}
+            >
+              <span>Show Itemized Details</span>
+              <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
